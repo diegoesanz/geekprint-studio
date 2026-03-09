@@ -1,0 +1,52 @@
+body{
+font-family: Arial;
+background:#111;
+color:white;
+margin:0;
+}
+
+header{
+text-align:center;
+padding:40px;
+background:#000;
+}
+
+.catalogo{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+padding:40px;
+}
+
+.producto{
+background:#1c1c1c;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.producto img{
+width:100%;
+border-radius:10px;
+}
+
+.producto span{
+display:block;
+font-size:20px;
+margin:10px 0;
+color:#00ffcc;
+}
+
+button{
+background:#25D366;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+}
+
+footer{
+text-align:center;
+padding:30px;
+background:#000;
+}
