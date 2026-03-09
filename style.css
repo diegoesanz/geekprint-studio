@@ -1,94 +1,494 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #111;
+  background: radial-gradient(circle at top, #1b1b1b 0%, #111 45%, #0a0a0a 100%);
   color: white;
   margin: 0;
 }
 
 header {
   text-align: center;
-  padding: 40px 20px;
-  background: #000;
+  padding: 50px 20px;
+  background: linear-gradient(180deg, #050505 0%, #111 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: 42px;
+  letter-spacing: 1px;
+}
+
+header p {
+  margin: 0;
+  color: #cfcfcf;
+  font-size: 18px;
 }
 
 .catalogo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
   padding: 40px;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
-.producto {
-  background: #1c1c1c;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
+/* JERARQUÍA DE PRODUCTOS */
+
+.producto-xl {
+  grid-column: span 2;
+  grid-row: span 2;
 }
+
+.producto-lg {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.producto-md {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* TARJETAS */
+
+.producto {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(34, 34, 34, 0.96) 0%, rgba(18, 18, 18, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 18px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  backdrop-filter: blur(4px);
+}
+
+.producto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.00) 35%,
+    rgba(255, 255, 255, 0.00) 65%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.producto::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at center, rgba(25, 245, 193, 0.16), transparent 45%);
+  opacity: 0;
+  filter: blur(30px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: scale(0.9);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.producto:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.producto:hover::before {
+  opacity: 1;
+}
+
+.producto:hover::after {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* HERO MÁS FUERTE PARA SPIDERMAN */
+
+.producto-xl:hover {
+  transform: translateY(-12px) scale(1.015);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(25, 245, 193, 0.10);
+}
+
+/* CARRUSEL */
 
 .carousel {
   position: relative;
   width: 100%;
-  height: 320px;
   overflow: hidden;
-  border-radius: 10px;
-  margin-bottom: 15px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+  background: #0b0b0b;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.producto-xl .carousel {
+  height: 620px;
+}
+
+.producto-lg .carousel {
+  height: 480px;
+}
+
+.producto-md .carousel {
+  height: 320px;
+}
+
+.carousel::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.16), transparent 45%);
+  filter: blur(28px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.35s ease;
+}
+
+.producto:hover .carousel::before {
+  opacity: 1;
 }
 
 .carousel img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none;
+  opacity: 0;
+  transform: translateX(30px) scale(1.08);
+  filter: blur(8px) brightness(0.85);
+  transition:
+    opacity 0.85s ease,
+    transform 0.9s ease,
+    filter 0.9s ease;
+  z-index: 0;
+  cursor: pointer;
 }
 
 .carousel img.active {
-  display: block;
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  filter: blur(0) brightness(1);
+  z-index: 2;
 }
+
+.carousel img.exit-left {
+  opacity: 0;
+  transform: translateX(-35px) scale(0.98);
+  filter: blur(6px) brightness(0.8);
+  z-index: 1;
+}
+
+.carousel img.exit-right {
+  opacity: 0;
+  transform: translateX(35px) scale(0.98);
+  filter: blur(6px) brightness(0.8);
+  z-index: 1;
+}
+
+/* ZOOM EN HOVER SEGÚN IMPORTANCIA */
+
+.producto:hover .carousel img.active {
+  transform: translateX(0) scale(1.04);
+  filter: blur(0) brightness(1.05);
+}
+
+.producto-lg:hover .carousel img.active {
+  transform: translateX(0) scale(1.05);
+}
+
+.producto-xl:hover .carousel img.active {
+  transform: translateX(0) scale(1.08);
+}
+
+/* BOTONES DEL CARRUSEL */
 
 .carousel .prev,
 .carousel .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.65);
-  color: #fff;
+  width: 46px;
+  height: 46px;
   border: none;
-  width: 42px;
-  height: 42px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 20px;
-  z-index: 2;
+  color: white;
+  z-index: 4;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.carousel .prev:hover,
+.carousel .next:hover {
+  background: rgba(0, 0, 0, 0.65);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
 }
 
 .carousel .prev {
-  left: 10px;
+  left: 14px;
 }
 
 .carousel .next {
-  right: 10px;
+  right: 14px;
+}
+
+/* DOTS */
+
+.dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dot.active {
+  background: white;
+  transform: scale(1.3);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.45);
+}
+
+/* TEXTOS */
+
+.producto h2,
+.producto p,
+.producto span,
+.producto > button {
+  position: relative;
+  z-index: 2;
+}
+
+.producto h2 {
+  margin: 8px 0 8px;
+  font-size: 24px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.producto p {
+  color: #c8c8c8;
+  min-height: 42px;
+  margin: 0 0 10px;
+  transition: color 0.3s ease;
 }
 
 .producto span {
   display: block;
-  font-size: 20px;
-  margin: 10px 0;
-  color: #00ffcc;
+  font-size: 24px;
+  margin: 10px 0 16px;
+  color: #19f5c1;
   font-weight: bold;
+  text-shadow: 0 0 18px rgba(25, 245, 193, 0.15);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
-.producto > button {
-  background: #25D366;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: black;
-  font-weight: bold;
+.producto:hover h2 {
+  transform: translateY(-2px);
+  color: #ffffff;
 }
+
+.producto:hover p {
+  color: #e3e3e3;
+}
+
+.producto:hover span {
+  transform: scale(1.04);
+  text-shadow: 0 0 22px rgba(25, 245, 193, 0.3);
+}
+
+/* BOTÓN DE COMPRA */
+
+.producto > button {
+  background: linear-gradient(180deg, #2eea7d 0%, #25d366 100%);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #08160d;
+  font-weight: bold;
+  font-size: 15px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease,
+    filter 0.25s ease;
+  box-shadow: 0 8px 18px rgba(37, 211, 102, 0.22);
+}
+
+.producto:hover > button {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.32);
+  filter: brightness(1.04);
+}
+
+/* LIGHTBOX */
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+#lightbox img {
+  max-width: 92%;
+  max-height: 92%;
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  animation: zoomIn 0.28s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.86);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* FOOTER */
 
 footer {
   text-align: center;
-  padding: 30px;
-  background: #000;
+  padding: 34px 20px;
+  background: #050505;
+  color: #9f9f9f;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+  .catalogo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .producto-xl {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .producto-lg {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .producto-md {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .producto-xl .carousel {
+    height: 460px;
+  }
+
+  .producto-lg .carousel {
+    height: 380px;
+  }
+
+  .producto-md .carousel {
+    height: 280px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 32px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  .catalogo {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .producto-xl,
+  .producto-lg,
+  .producto-md {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .producto-xl .carousel {
+    height: 360px;
+  }
+
+  .producto-lg .carousel {
+    height: 320px;
+  }
+
+  .producto-md .carousel {
+    height: 260px;
+  }
+
+  .producto h2 {
+    font-size: 20px;
+  }
+
+  .producto span {
+    font-size: 20px;
+  }
+
+  .carousel .prev,
+  .carousel .next {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
 }
