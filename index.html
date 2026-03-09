@@ -1,34 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>GeekPrint Studio</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GeekPrint Studio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-<h1>GeekPrint Studio</h1>
-<p>Figuras geek impresas en 3D y pintadas a mano</p>
-</header>
+  <header>
+    <h1>GeekPrint Studio</h1>
+    <p>Figuras geek impresas en 3D y pintadas a mano</p>
+  </header>
 
-<section class="catalogo">
+  <section class="catalogo">
 
-<div class="producto">
-<img src="images/spiderman_venom.jpg">
-<h2>Spiderman vs Venom</h2>
-<p>Figura de combate – 40 cm</p>
-<span>$100.000</span>
-<button onclick="comprar('Spiderman vs Venom')">Comprar</button>
-</div>
-</section>
+    <div class="producto">
+      <div class="carousel">
+        <img src="images/spiderman_venom_1.jpg" alt="Spiderman vs Venom 1">
+        <img src="images/spiderman_venom_2.jpg" alt="Spiderman vs Venom 2">
+        <img src="images/spiderman_venom_3.jpg" alt="Spiderman vs Venom 3">
+        <button class="prev" type="button">❮</button>
+        <button class="next" type="button">❯</button>
+      </div>
+      <h2>Spiderman vs Venom</h2>
+      <p>Figura 40 cm pintada a mano</p>
+      <span>$100.000</span>
+      <button type="button" onclick="comprar('Spiderman vs Venom')">Comprar</button>
+    </div>
 
-<footer>
-<p>© GeekPrint Studio</p>
-</footer>
+    <div class="producto">
+      <div class="carousel">
+        <img src="images/batfleck_1.jpg" alt="Batman Affleck 1">
+        <img src="images/batfleck_2.jpg" alt="Batman Affleck 2">
+        <img src="images/batfleck_3.jpg" alt="Batman Affleck 3">
+        <img src="images/batfleck_4.jpg" alt="Batman Affleck 4">
+        <button class="prev" type="button">❮</button>
+        <button class="next" type="button">❯</button>
+      </div>
+      <h2>Batman (Ben Affleck)</h2>
+      <p>40 cm cabeza en resina</p>
+      <span>$70.000</span>
+      <button type="button" onclick="comprar('Batman Ben Affleck')">Comprar</button>
+    </div>
 
-<script src="script.js"></script>
+    <div class="producto">
+      <div class="carousel">
+        <img src="images/batbale_1.jpg" alt="Batman Bale 1">
+        <img src="images/batbale_2.jpg" alt="Batman Bale 2">
+        <img src="images/batbale_3.jpg" alt="Batman Bale 3">
+        <img src="images/batbale_4.jpg" alt="Batman Bale 4">
+         <img src="images/batbale_5.jpg" alt="Batman Bale 5">
+        <button class="prev" type="button">❮</button>
+        <button class="next" type="button">❯</button>
+      </div>
+      <h2>Batman (Christian Bale)</h2>
+      <p>40 cm cabeza en resina</p>
+      <span>$70.000</span>
+      <button type="button" onclick="comprar('Batman Bale')">Comprar</button>
+    </div>
 
+    <div class="producto">
+      <div class="carousel">
+        <img src="images/miky_1.jpg" alt="Donatello 1">
+        <img src="images/miky_2.jpg" alt="Donatello 2">
+        <img src="images/miky_3.jpg" alt="Donatello 3">
+        <button class="prev" type="button">❮</button>
+        <button class="next" type="button">❯</button>
+      </div>
+      <h2>Donatello</h2>
+      <p>Tortugas Ninja 20 cm</p>
+      <span>$20.000</span>
+      <button type="button" onclick="comprar('Donatello')">Comprar</button>
+    </div>
+
+    <div class="producto">
+      <div class="carousel">
+        <img src="images/dony_1.jpg" alt="Donatello 1">
+        <img src="images/dony_2.jpg" alt="Donatello 2">
+        <img src="images/dony_3.jpg" alt="Donatello 3">
+        <button class="prev" type="button">❮</button>
+        <button class="next" type="button">❯</button>
+      </div>
+      <h2>Donatello</h2>
+      <p>Tortugas Ninja 20 cm</p>
+      <span>$20.000</span>
+      <button type="button" onclick="comprar('Miguelangelo')">Comprar</button>
+    </div>
+
+
+    <div class="producto">
+      <div class="carousel">
+        <img src="images/splinter_1.jpg" alt="Splinter 1">
+        <img src="images/splinter_2.jpg" alt="Splinter 2">
+        <img src="images/splinter_3.jpg" alt="Splinter 3">
+        <button class="prev" type="button">❮</button>
+        <button class="next" type="button">❯</button>
+      </div>
+      <h2>Maestro Splinter</h2>
+      <p>Tortugas Ninja 20 cm</p>
+      <span>$20.000</span>
+      <button type="button" onclick="comprar('Splinter')">Comprar</button>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© GeekPrint Studio</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

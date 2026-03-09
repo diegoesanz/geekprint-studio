@@ -1,52 +1,94 @@
-body{
-font-family: Arial;
-background:#111;
-color:white;
-margin:0;
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+  margin: 0;
 }
 
-header{
-text-align:center;
-padding:40px;
-background:#000;
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: #000;
 }
 
-.catalogo{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-padding:40px;
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 40px;
 }
 
-.producto{
-background:#1c1c1c;
-padding:20px;
-border-radius:10px;
-text-align:center;
+.producto {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
 }
 
-.producto img{
-width:100%;
-border-radius:10px;
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
-.producto span{
-display:block;
-font-size:20px;
-margin:10px 0;
-color:#00ffcc;
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
 }
 
-button{
-background:#25D366;
-border:none;
-padding:10px 20px;
-border-radius:5px;
-cursor:pointer;
+.carousel img.active {
+  display: block;
 }
 
-footer{
-text-align:center;
-padding:30px;
-background:#000;
+.carousel .prev,
+.carousel .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 2;
+}
+
+.carousel .prev {
+  left: 10px;
+}
+
+.carousel .next {
+  right: 10px;
+}
+
+.producto span {
+  display: block;
+  font-size: 20px;
+  margin: 10px 0;
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.producto > button {
+  background: #25D366;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #000;
 }
